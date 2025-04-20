@@ -10,6 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 await connectDB();
+
+app.get("/", (req, res) => {
+  res.send("Work Correctly");
+});
+
 app.listen(PORT, () => {
   console.log(`Server Running on port ${PORT} `);
 });
