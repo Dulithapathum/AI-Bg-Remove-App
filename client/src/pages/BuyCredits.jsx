@@ -1,7 +1,5 @@
 import React from "react";
 
-const BuyCredits = () => {
+export const BuyCredits = () => {
   return <div>BuyCredits</div>;
 };
-
-export default BuyCredits;
