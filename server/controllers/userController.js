@@ -1,5 +1,5 @@
 import { Webhook } from "svix";
-
+import UserModel from "../models/userModel.js";
 const clerkWebhooks = async (req, res) => {
   try {
     const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
@@ -19,7 +19,7 @@ const clerkWebhooks = async (req, res) => {
           photo: data.image_url,
         };
 
-        await userModel.create(userData);
+        await UserModel.create(userData);
 
         res.json({});
         break;
@@ -32,12 +32,12 @@ const clerkWebhooks = async (req, res) => {
           photo: data.image_url,
         };
 
-        await userModel.findOneAndUpdate({ clerkId: data.id }, userData);
+        await UserModel.findOneAndUpdate({ clerkId: data.id }, userData);
         res.json({});
         break;
       }
       case "user.deleted": {
-        await userModel.findOneAndDelete({ clerkId: data.id });
+        await UserModel.findOneAndDelete({ clerkId: data.id });
         res.json({});
         break;
       }
