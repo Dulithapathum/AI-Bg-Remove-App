@@ -50,4 +50,17 @@ const clerkWebhooks = async (req, res) => {
     res.Json({ success: false, message: error.message });
   }
 };
-export { clerkWebhooks };
+
+// Endpoint to fetch user's credit balance using Clerk ID
+const userCredeits = async (req, res) => {
+  try {
+    const { clerkId } = req.body;
+    const userData = await UserModel.findOne({ clerkId });
+    res.json({ success: true, credits: userData.creditBalance });
+  } catch (error) {
+    console.log(error.message);
+    res.Json({ success: false, message: error.message });
+  }
+};
+
+export { clerkWebhooks, userCredeits };
