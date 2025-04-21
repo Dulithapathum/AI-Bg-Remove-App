@@ -47,7 +47,7 @@ const clerkWebhooks = async (req, res) => {
     }
   } catch (error) {
     console.log(error.message);
-    res.Json({ success: false, message: error.message });
+    res.json({ success: false, message: error.message });
   }
 };
 
@@ -59,7 +59,7 @@ const userCredeits = async (req, res) => {
     res.json({ success: true, credits: userData.creditBalance });
   } catch (error) {
     console.log(error.message);
-    res.Json({ success: false, message: error.message });
+    res.json({ success: false, message: error.message });
   }
 };
 
