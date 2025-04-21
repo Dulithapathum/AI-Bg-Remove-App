@@ -8,6 +8,7 @@ export const NavBar = () => {
   const { openSignIn } = useClerk();
   const { isSignedIn, user } = useUser();
   const { credit, loadCreditsData } = useContext(AppContext);
+
   useEffect(() => {
     if (isSignedIn) {
       loadCreditsData();
