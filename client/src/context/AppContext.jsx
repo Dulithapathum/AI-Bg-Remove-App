@@ -2,10 +2,11 @@ import { createContext, useState } from "react";
 import { useAuth } from "@clerk/clerk-react";
 import { toast } from "react-toastify";
 import axios from "axios";
+
 export const AppContext = createContext();
 
-const AppContexProvider = ({ children }) => {
-  const [credit, setCredit] = useState(false);
+const AppContextProvider = ({ children }) => {
+  const [credit, setCredit] = useState(10);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const { getToken } = useAuth();
@@ -36,4 +37,4 @@ const AppContexProvider = ({ children }) => {
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
-export default AppContexProvider;
+export default AppContextProvider;

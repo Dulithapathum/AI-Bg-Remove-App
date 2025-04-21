@@ -51,15 +51,21 @@ const clerkWebhooks = async (req, res) => {
   }
 };
 
-// Endpoint to fetch user's credit balance using Clerk ID
 const userCredits = async (req, res) => {
   try {
-    const { clerkId } = req.body;
+    const { clerkId } = req.user;
     const userData = await UserModel.findOne({ clerkId });
+
+    if (!userData) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
     res.json({ success: true, credits: userData.creditBalance });
   } catch (error) {
-    console.log(error.message);
-    res.json({ success: false, message: error.message });
+    console.error("Credits Error:", error.message);
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
