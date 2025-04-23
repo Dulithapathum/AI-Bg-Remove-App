@@ -5,8 +5,10 @@ import UserModel from "../models/userModel.js";
 
 const removeBgImage = async (req, res) => {
   try {
-    const { clerkId } = req.body;
+    const { clerkId } = req.user;
+
     const user = await UserModel.findOne({ clerkId });
+
     if (!user) {
       return res.json({ success: false, message: "User not Found" });
     }
